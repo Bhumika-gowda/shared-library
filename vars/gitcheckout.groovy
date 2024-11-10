@@ -1,11 +1,13 @@
-def call(String gitUrl, String CredID, string gitBranch) {
-    echo "URL: ${gitURl}"
-    checkout( [$class: 'GitSCM',
-                            branches: [[name: ${gitBranch}]],
-                            doGenerateSubmodulesConfigurations: false,
-                            extensions: [],
-                            submodulecfg: [],
-                            userRemoteConfigs: [[url: ${gitUrl},
-                                                 credentialsID: ${CredID}]]])    
-                        
+@Library('mysharedLibrary') _
+
+def gitCheckout(String gitUrl, String credId, String gitBranch) {
+    echo "URL: ${gitUrl}"
+    checkout([$class: 'GitSCM',
+              branches: [[name: gitBranch]],
+              doGenerateSubmoduleConfigurations: false,
+              extensions: [],
+              userRemoteConfigs: [[url: gitUrl, credentialsId: credId]]
+    ])
 }
+
+
