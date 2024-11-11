@@ -1,9 +1,7 @@
-def call(String gitUrl, String CredID, string gitBranch) {
-    echo "URL: ${gitURl}"
-    checkout( [$class: 'GitSCM',
-                            branches: [[name: ${gitBranch}]],
+def call(Mao config) {
+    echo "BRANCH: ${config.branch}"
+    checkout([$class: 'GitSCM',
                             doGenerateSubmodulesConfigurations: false,
                             extensions: [],
-                            submodulecfg: [],
-                            userRemoteConfigs: [[url: ${gitUrl},
-                                                 credentialsID: ${CredID}]]])    
+                            userRemoteConfigs: [[url: config.url,
+                            credentialsID: config.credentialsId]]])    
